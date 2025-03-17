@@ -40,6 +40,24 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+  .slider-text {
+    width: 100%;
+    padding: 0 15px;
+    word-wrap: break-word;
+}
+
+.slider-text h1 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.one-forth {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -3091,11 +3109,14 @@ input[type="button"].btn-block {
     height: calc(1rem - 4px);
     background-color: #adb5bd;
     border-radius: 0.5rem;
-    -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -webkit-transition:;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    -o-transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -o-transition:;
     transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
+    transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -moz-transition:;
+    -ms-transition:;
+}
     @media (prefers-reduced-motion: reduce) {
       .custom-switch .custom-control-label::after {
         -webkit-transition: none;
@@ -8368,8 +8389,8 @@ h1, h2, h3, h4, h5,
   text-transform: uppercase; }
 
 .hero h3.vr {
-  -webkit-writing-mode: vertical-lr;
-  -ms-writing-mode: tb-lr;
+  -webkit-writing-mode:;
+  -ms-writing-mode:;
   writing-mode: vertical-lr;
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -8387,7 +8408,8 @@ h1, h2, h3, h4, h5,
   letter-spacing: 5px;
   font-size: 16px;
   z-index: 1;
-  color: rgba(0, 0, 0, 0.3); }
+  color: rgba(0, 0, 0, 0.3);
+}
   @media (max-width: 1199.98px) {
     .hero h3.vr {
       opacity: 0;
