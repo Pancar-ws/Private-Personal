@@ -164,7 +164,7 @@
 				<div class="col-md-6 col-lg-5 d-flex">
 					<div class="img-about img d-flex align-items-stretch">
 						<div class="overlay"></div>
-						<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(images/Pancar-1.jpeg);">
+						<div class="img d-flex align-self-stretch align-items-center animate-image" style="background-image:url(images/Pancar-1.jpeg);">
 						</div>
 					</div>
 				</div>
@@ -666,6 +666,94 @@
 	  <script src="js/google-map.js"></script>
 	  
 	  <script src="js/main.js"></script>
+
+	  <!-- js untuk animate image section about -->
+	  <script>
+		document.addEventListener("DOMContentLoaded", function() {
+		  // Get the image element
+		  const animatedImage = document.querySelector('.animate-image');
+		  
+		  // Create an observer
+		  const observer = new IntersectionObserver((entries, observer) => {
+			entries.forEach(entry => {
+			  // If the element is in view
+			  if (entry.isIntersecting) {
+				// Add the 'visible' class
+				entry.target.classList.add('visible');
+				// Stop observing the element after animation is triggered
+				observer.unobserve(entry.target);
+			  }
+			});
+		  }, {threshold: 0.3}); // Trigger when 30% of the element is visible
+		  
+		  // Start observing the element
+		  observer.observe(animatedImage);
+		});
+	  </script>
+
+	  <!-- js untuk animasi progress bar section skills -->
+	  <script>
+		document.addEventListener("DOMContentLoaded", function() {
+		  // Get all progress circles
+		  const progressCircles = document.querySelectorAll('.progress');
+		  
+		  // Function to animate a single progress circle
+		  function animateProgress(progressCircle) {
+			// Get the target value from data attribute
+			const value = parseInt(progressCircle.getAttribute('data-value'));
+			
+			// Get the left and right progress bar elements
+			const leftProgress = progressCircle.querySelector('.progress-left .progress-bar');
+			const rightProgress = progressCircle.querySelector('.progress-right .progress-bar');
+			
+			// Reset initial state
+			leftProgress.style.transform = 'rotate(0deg)';
+			rightProgress.style.transform = 'rotate(0deg)';
+			
+			// Set a timeout for the animation to be visible
+			setTimeout(() => {
+			  // Animate right side first (0% to 50%)
+			  if (value > 0) {
+				const rightDegrees = value >= 50 ? 180 : (value/100) * 360;
+				rightProgress.style.transition = 'transform 1s ease-in-out';
+				rightProgress.style.transform = `rotate(${rightDegrees}deg)`;
+			  }
+			  
+			  // Then animate left side if needed (51% to 100%)
+			  if (value > 50) {
+				setTimeout(() => {
+				  const leftDegrees = ((value-50)/100) * 360;
+				  leftProgress.style.transition = 'transform 1s ease-in-out';
+				  leftProgress.style.transform = `rotate(${leftDegrees}deg)`;
+				}, 1000); // Wait for right side to complete
+			  }
+			}, 300);
+		  }
+		  
+		  // Create an observer
+		  const observer = new IntersectionObserver((entries, observer) => {
+			entries.forEach(entry => {
+			  // If the element is in view
+			  if (entry.isIntersecting) {
+				// Animate the progress circle
+				animateProgress(entry.target);
+				// Stop observing after animation
+				observer.unobserve(entry.target);
+			  }
+			});
+		  }, {threshold: 0.3});
+		  
+		  // Start observing each progress circle
+		  progressCircles.forEach(circle => {
+			observer.observe(circle);
+		  });
+		});
+	  </script>
+
+	  <!-- js untuk animasi border section skills -->
+	   <script>
+		
+	   </script>
 	  
 	  </body>
 	  </html>

@@ -150,6 +150,8 @@
 	  console.log('show');
 	});
 
+	// foto data diri
+	
 	// scroll
 	var scrollWindow = function() {
 		$(window).scroll(function(){
