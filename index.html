@@ -750,10 +750,136 @@
 		});
 	  </script>
 
-	  <!-- js untuk animasi border section skills -->
-	   <script>
+		<!-- Footer Animation JavaScript -->
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+		// Animate Quick Links
+		const footerLinks = document.querySelectorAll('.footer-links li a');
 		
-	   </script>
+		footerLinks.forEach((link, index) => {
+			// Set initial state - slightly transparent and shifted right
+			link.style.opacity = "0";
+			link.style.transform = "translateX(20px)";
+			link.style.transition = "all 0.4s ease";
+			link.style.transitionDelay = (index * 0.1) + "s";
+			
+			// Create observer for footer links
+			const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+				// Animate to final state when in view
+				setTimeout(() => {
+					entry.target.style.opacity = "1";
+					entry.target.style.transform = "translateX(0)";
+				}, 200);
+				observer.unobserve(entry.target);
+				}
+			});
+			}, {threshold: 0.3});
+			
+			observer.observe(link);
+		});
+		
+		// Animate Social Media Icons
+		const socialIcons = document.querySelectorAll('.social-media li');
+		
+		socialIcons.forEach((icon, index) => {
+			// Set initial state - scaled down
+			icon.style.opacity = "0";
+			icon.style.transform = "scale(0.5)";
+			icon.style.transition = "all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28)";
+			icon.style.transitionDelay = (index * 0.1) + "s";
+			
+			// Add hover effect
+			const iconLink = icon.querySelector('a');
+			if (iconLink) {
+			iconLink.addEventListener('mouseenter', () => {
+				iconLink.style.transform = "scale(1.2)";
+				iconLink.style.transition = "transform 0.2s ease";
+			});
+			
+			iconLink.addEventListener('mouseleave', () => {
+				iconLink.style.transform = "scale(1)";
+			});
+			}
+			
+			// Create observer for social icons
+			const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+				// Animate to final state when in view
+				setTimeout(() => {
+					entry.target.style.opacity = "1";
+					entry.target.style.transform = "scale(1)";
+				}, 300);
+				observer.unobserve(entry.target);
+				}
+			});
+			}, {threshold: 0.3});
+			
+			observer.observe(icon);
+		});
+		
+		// Add highlight effect to footer headings
+		const footerHeadings = document.querySelectorAll('.ftco-footer-widget h2');
+		
+		footerHeadings.forEach(heading => {
+			// Set initial state
+			heading.style.opacity = "0";
+			heading.style.transform = "translateY(15px)";
+			heading.style.transition = "all 0.5s ease";
+			
+			// Create observer for headings
+			const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+				// Animate to final state when in view
+				entry.target.style.opacity = "1";
+				entry.target.style.transform = "translateY(0)";
+				
+				// Add subtle highlight effect
+				setTimeout(() => {
+					entry.target.style.textShadow = "0 0 8px rgba(255,255,255,0.3)";
+					setTimeout(() => {
+					entry.target.style.textShadow = "none";
+					entry.target.style.transition = "text-shadow 1s ease";
+					}, 800);
+				}, 500);
+				
+				observer.unobserve(entry.target);
+				}
+			});
+			}, {threshold: 0.5});
+			
+			observer.observe(heading);
+		});
+		
+		// Add ripple effect to contact info items
+		const contactItems = document.querySelectorAll('.contact-info li');
+		
+		contactItems.forEach((item, index) => {
+			// Set initial state
+			item.style.opacity = "0";
+			item.style.transform = "translateY(10px)";
+			item.style.transition = "all 0.4s ease";
+			item.style.transitionDelay = (index * 0.15) + "s";
+			
+			// Create observer for contact items
+			const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+				// Animate to final state when in view
+				entry.target.style.opacity = "1";
+				entry.target.style.transform = "translateY(0)";
+				observer.unobserve(entry.target);
+				}
+			});
+			}, {threshold: 0.3});
+			
+			observer.observe(item);
+		});
+		});
+	</script>
 	  
 	  </body>
 	  </html>
