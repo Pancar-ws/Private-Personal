@@ -280,5 +280,221 @@
 
 <script src="js/main.js"></script>
 
+<!-- Footer Animation JavaScript -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  // Animate Quick Links
+  const footerLinks = document.querySelectorAll('.footer-links li a');
+  
+  footerLinks.forEach((link, index) => {
+    // Set initial state - slightly transparent and shifted right
+    link.style.opacity = "0";
+    link.style.transform = "translateX(20px)";
+    link.style.transition = "all 0.4s ease";
+    link.style.transitionDelay = (index * 0.1) + "s";
+    
+    // Create observer for footer links
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+      // Animate to final state when in view
+      setTimeout(() => {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateX(0)";
+      }, 200);
+      observer.unobserve(entry.target);
+      }
+    });
+    }, {threshold: 0.3});
+    
+    observer.observe(link);
+  });
+  
+  // Animate Social Media Icons
+  const socialIcons = document.querySelectorAll('.social-media li');
+  
+  socialIcons.forEach((icon, index) => {
+    // Set initial state - scaled down
+    icon.style.opacity = "0";
+    icon.style.transform = "scale(0.5)";
+    icon.style.transition = "all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28)";
+    icon.style.transitionDelay = (index * 0.1) + "s";
+    
+    // Add hover effect
+    const iconLink = icon.querySelector('a');
+    if (iconLink) {
+    iconLink.addEventListener('mouseenter', () => {
+      iconLink.style.transform = "scale(1.2)";
+      iconLink.style.transition = "transform 0.2s ease";
+    });
+    
+    iconLink.addEventListener('mouseleave', () => {
+      iconLink.style.transform = "scale(1)";
+    });
+    }
+    
+    // Create observer for social icons
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+      // Animate to final state when in view
+      setTimeout(() => {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "scale(1)";
+      }, 300);
+      observer.unobserve(entry.target);
+      }
+    });
+    }, {threshold: 0.3});
+    
+    observer.observe(icon);
+  });
+  
+  // Add highlight effect to footer headings
+  const footerHeadings = document.querySelectorAll('.ftco-footer-widget h2');
+  
+  footerHeadings.forEach(heading => {
+    // Set initial state
+    heading.style.opacity = "0";
+    heading.style.transform = "translateY(15px)";
+    heading.style.transition = "all 0.5s ease";
+    
+    // Create observer for headings
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+      // Animate to final state when in view
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
+      
+      // Add subtle highlight effect
+      setTimeout(() => {
+        entry.target.style.textShadow = "0 0 8px rgba(255,255,255,0.3)";
+        setTimeout(() => {
+        entry.target.style.textShadow = "none";
+        entry.target.style.transition = "text-shadow 1s ease";
+        }, 800);
+      }, 500);
+      
+      observer.unobserve(entry.target);
+      }
+    });
+    }, {threshold: 0.5});
+    
+    observer.observe(heading);
+  });
+  
+  // Add ripple effect to contact info items
+  const contactItems = document.querySelectorAll('.contact-info li');
+  
+  contactItems.forEach((item, index) => {
+    // Set initial state
+    item.style.opacity = "0";
+    item.style.transform = "translateY(10px)";
+    item.style.transition = "all 0.4s ease";
+    item.style.transitionDelay = (index * 0.15) + "s";
+    
+    // Create observer for contact items
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+      // Animate to final state when in view
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
+      observer.unobserve(entry.target);
+      }
+    });
+    }, {threshold: 0.3});
+    
+    observer.observe(item);
+  });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    // Footer links hover animation
+    $('.footer-links li a').hover(
+      function() {
+        // Mouse enter
+        $(this).find('.fa-chevron-right').stop().animate({
+          marginLeft: '5px'
+        }, 200);
+        $(this).stop().animate({
+          paddingLeft: '10px'
+        }, 200);
+      },
+      function() {
+        // Mouse leave
+        $(this).find('.fa-chevron-right').stop().animate({
+          marginLeft: '0'
+        }, 200);
+        $(this).stop().animate({
+          paddingLeft: '0'
+        }, 200);
+      }
+    );
+
+    // Footer social icons animation
+    $('.social-media li a').hover(
+      function() {
+        // Mouse enter
+        $(this).find('.fa').stop().animate({
+          fontSize: '20px'
+        }, 200).css('color', '#F96D00');
+      },
+      function() {
+        // Mouse leave
+        $(this).find('.fa').stop().animate({
+          fontSize: '16px'
+        }, 200).css('color', '');
+      }
+    );
+
+    // Add entrance animation for footer elements
+    $('.ftco-footer-widget').each(function(index) {
+      $(this).css({
+        opacity: 0,
+        transform: 'translateY(20px)'
+      });
+      
+      setTimeout(() => {
+        $(this).animate({
+          opacity: 1,
+          transform: 'translateY(0)'
+        }, 500);
+      }, index * 200);
+    });
+
+    // Quick links click effect
+    $('.footer-links li a').on('click', function(e) {
+      // Only apply to anchor links
+      if($(this).attr('href').startsWith('#')) {
+        e.preventDefault();
+        
+        // Create ripple effect
+        let ripple = $('<span class="ripple-effect"></span>');
+        $(this).append(ripple);
+        
+        // Animate and remove
+        ripple.animate({
+          width: '100%',
+          opacity: 0
+        }, 700, function() {
+          ripple.remove();
+        });
+        
+        // Scroll to section after animation
+        let targetSection = $($(this).attr('href'));
+        if(targetSection.length) {
+          $('html, body').animate({
+            scrollTop: targetSection.offset().top - 70
+          }, 800);
+        }
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
