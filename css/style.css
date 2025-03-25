@@ -9324,6 +9324,12 @@ textarea.form-control {
 .heading-section.heading-section-white p {
   color: rgba(255, 255, 255, 0.9); }
 
+.blog-image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
 .img,
 .blog-img,
 .user-img {
