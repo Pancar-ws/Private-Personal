@@ -22,6 +22,153 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	
 	<style>
+		/* Penambahan animasi pada bagian music travel dll */
+		.my-interest {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .interest-wrap {
+            position: relative;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .interest-wrap:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .interest-wrap .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .interest-wrap:hover .icon {
+            transform: rotate(360deg);
+        }
+
+        .interest-wrap .text {
+            font-weight: 600;
+            color: #333;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .interest-wrap.active {
+            animation: pulse 1s infinite;
+            background-color: #e9f5ff;
+        }
+		/* Perbaikan pada bentuk foto about */
+		.img-about {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .img-about .img {
+            background-size: cover !important;
+            background-position: center !important;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+
+        .img-about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg, 
+                rgba(0,0,0,0.05) 0%, 
+                rgba(0,0,0,0.1) 100%
+            );
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .img-about:hover::before {
+            opacity: 1;
+        }
+
+        .img-about:hover .img {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 768px) {
+            .img-about {
+                margin-bottom: 30px;
+            }
+        }
+		/* Penambahan JS pada bagian contact */
+		.dbox {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .dbox.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dbox .icon {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .dbox:hover .icon {
+            transform: scale(1.1);
+            background-color: #f0f0f0;
+        }
+
+        .dbox .text span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .dbox .text a {
+            text-decoration: none;
+            color: #b3b3b3;
+            transition: color 0.3s ease;
+        }
+
+        .dbox .text a:hover {
+            color: #0056b3;
+        }
+
+		.ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
 		/* Desain Minimalis Variasi 1: Soft Rounded */
 		.blog-card-minimalist-1 {
 			border: none;
@@ -99,6 +246,9 @@
 			transform: scale(1.025);
 			box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
 		}
+
+		/* Penambahan css untuk bagian my skil*/
+		
 	</style>
 
 </head>
@@ -245,8 +395,8 @@
 			<div class="row d-flex no-gutters">
 				<div class="col-md-6 col-lg-5 d-flex">
 					<div class="img-about img d-flex align-items-stretch">
-						<div class="overlay"></div>
-						<div class="img d-flex align-self-stretch align-items-center animate-image" style="background-image:url(images/Pancar-1.jpeg);">
+						<!-- <div class="overlay"></div> -->
+						<div class="img-about img d-flex align-items-stretch" style="background-image:url(images/Pancar-1.jpeg);">
 						</div>
 					</div>
 				</div>
@@ -269,25 +419,25 @@
 							</div>
 							<div class="col-md-12">
 								<div class="my-interest d-lg-flex w-100">
-									<div class="interest-wrap d-flex align-items-center">
+									<div class="interest-wrap d-flex align-items-center flex-column">
 										<div class="icon d-flex align-items-center justify-content-center">
 											<span class="flaticon-listening"></span>
 										</div>
 										<div class="text">Music</div>
 									</div>
-									<div class="interest-wrap d-flex align-items-center">
+									<div class="interest-wrap d-flex align-items-center flex-column">
 										<div class="icon d-flex align-items-center justify-content-center">
 											<span class="flaticon-suitcases"></span>
 										</div>
 										<div class="text">Travel</div>
 									</div>
-									<div class="interest-wrap d-flex align-items-center">
+									<div class="interest-wrap d-flex align-items-center flex-column">
 										<div class="icon d-flex align-items-center justify-content-center">
 											<span class="flaticon-video-player"></span>
 										</div>
 										<div class="text">Movie</div>
 									</div>
-									<div class="interest-wrap d-flex align-items-center">
+									<div class="interest-wrap d-flex align-items-center flex-column">
 										<div class="icon d-flex align-items-center justify-content-center">
 											<span class="flaticon-football"></span>
 										</div>
@@ -656,7 +806,7 @@
 								<span class="fa fa-phone"></span>
 							</div>
 							<div class="text">
-								<p><span>Phone:</span> <a href="tel://1234567920">+62 8570 0505 528</a></p>
+								<p><span>Phone:</span>+62 8570 0505 528</p>
 							</div>
 						</div>
 						<div class="dbox w-100 d-flex">
@@ -664,7 +814,7 @@
 								<span class="fa fa-paper-plane"></span>
 							</div>
 							<div class="text">
-								<p><span>Email:</span> <a href="mailto:info@yoursite.com">pancarwahyu687@gmail.com</a></p>
+								<p><span>Email:</span>pancarwahyu687@gmail.com</p>
 							</div>
 						</div>
 						<div class="dbox w-100 d-flex">
@@ -676,7 +826,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div id="map" class="map"></div> -->
 				</div>
 			</div>
 		</div>
@@ -734,8 +883,8 @@
 				<ul class="social-media list-unstyled d-flex mt-3">
 				  <li class="mr-3"><a href="#" class="social-icon"><span class="fab fa-twitter"></span></a></li>
 				  <li class="mr-3"><a href="#" class="social-icon"><span class="fab fa-facebook-f"></span></a></li>
-				  <li class="mr-3"><a href="#" class="social-icon"><span class="fab fa-instagram"></span></a></li>
-				  <li><a href="#" class="social-icon"><span class="fab fa-linkedin-in"></span></a></li>
+				  <li class="mr-3"><a href="https://www.instagram.com/pancarws" class="social-icon"><span class="fab fa-instagram"></span></a></li>
+				  <li><a href="https://www.linkedin.com/in/pancar-wahyu" class="social-icon"><span class="fab fa-linkedin-in"></span></a></li>
 				</ul>
 			  </div>
 			</div>
@@ -1115,5 +1264,167 @@
 		});
 		</script>
 
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const dboxes = document.querySelectorAll('.dbox');
+				
+				// Animasi fade in dan slide up saat scroll
+				const observerOptions = {
+					root: null,
+					rootMargin: '0px',
+					threshold: 0.1
+				};
+	
+				const observer = new IntersectionObserver((entries, observer) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				}, observerOptions);
+	
+				// Tambahkan efek hover dan animasi berurutan
+				dboxes.forEach((dbox, index) => {
+					// Observasi untuk animasi scroll
+					observer.observe(dbox);
+	
+					// Animasi berurutan dengan delay
+					dbox.style.transitionDelay = `${index * 200}ms`;
+	
+					// Efek hover pada icon
+					const icon = dbox.querySelector('.icon');
+					icon.addEventListener('mouseenter', () => {
+						icon.style.transform = 'scale(1.1)';
+						icon.style.backgroundColor = '#f0f0f0';
+					});
+	
+					icon.addEventListener('mouseleave', () => {
+						icon.style.transform = 'scale(1)';
+						icon.style.backgroundColor = 'transparent';
+					});
+				});
+	
+				// Tambahkan efek ripple pada kontak
+				dboxes.forEach(dbox => {
+					dbox.addEventListener('click', (e) => {
+						const ripple = document.createElement('span');
+						ripple.classList.add('ripple');
+						dbox.appendChild(ripple);
+	
+						const x = e.clientX - e.target.offsetLeft;
+						const y = e.clientY - e.target.offsetTop;
+	
+						ripple.style.left = `${x}px`;
+						ripple.style.top = `${y}px`;
+	
+						setTimeout(() => {
+							ripple.remove();
+						}, 300);
+					});
+				});
+			});
+		</script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const imgAbout = document.querySelector('.img-about');
+				
+				// Efek parallax sederhana
+				window.addEventListener('mousemove', (e) => {
+					const x = (e.clientX - window.innerWidth / 2) / 100;
+					const y = (e.clientY - window.innerHeight / 2) / 100;
+					
+					imgAbout.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg)`;
+				});
+	
+				imgAbout.addEventListener('mouseleave', () => {
+					imgAbout.style.transform = 'none';
+				});
+			});
+		</script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const interestWraps = document.querySelectorAll('.interest-wrap');
+	
+				// Fungsi untuk membuat animasi scroll reveal
+				const observerOptions = {
+					root: null,
+					rootMargin: '0px',
+					threshold: 0.1
+				};
+	
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry, index) => {
+						if (entry.isIntersecting) {
+							setTimeout(() => {
+								entry.target.style.opacity = '1';
+								entry.target.style.transform = 'translateY(0)';
+							}, index * 200);
+						}
+					});
+				}, observerOptions);
+	
+				// Observasi setiap minat
+				interestWraps.forEach(wrap => {
+					observer.observe(wrap);
+	
+					// Tambahkan event listener untuk interaksi
+					wrap.addEventListener('mouseenter', () => {
+						wrap.classList.add('active');
+					});
+	
+					wrap.addEventListener('mouseleave', () => {
+						wrap.classList.remove('active');
+					});
+	
+					// Efek getar pada klik
+					wrap.addEventListener('click', () => {
+						wrap.style.animation = 'none';
+						wrap.offsetHeight; // Trigger reflow
+						wrap.style.animation = 'pulse 0.5s';
+					});
+				});
+			});
+		</script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const skillBoxes = document.querySelectorAll('.row.progress-circle .col-lg-4');
+			
+				// Buat observer untuk animasi saat scroll
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('animate-appear');
+						}
+					});
+				}, {
+					threshold: 0.1 // Saat 10% elemen terlihat
+				});
+			
+				// Tambahkan CSS untuk animasi
+				const style = document.createElement('style');
+				style.textContent = `
+					.col-lg-4 {
+						opacity: 0;
+						transform: translateY(50px);
+						transition: all 0.8s ease-out;
+					}
+					.col-lg-4.animate-appear {
+						opacity: 1;
+						transform: translateY(0);
+					}
+				`;
+				document.head.appendChild(style);
+			
+				// Observasi setiap kotak skill
+				skillBoxes.forEach((box, index) => {
+					// Tambahkan delay untuk efek bertahap
+					box.style.transitionDelay = `${index * 0.2}s`;
+					observer.observe(box);
+				});
+			});
+		</script>
 	  </body>
 	  </html>
