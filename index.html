@@ -20,6 +20,86 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	
+	<style>
+		/* Desain Minimalis Variasi 1: Soft Rounded */
+		.blog-card-minimalist-1 {
+			border: none;
+			border-radius: 12px;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+			overflow: hidden;
+		}
+	
+		.blog-card-minimalist-1 .card-img-top {
+			transition: transform 0.3s ease;
+		}
+	
+		.blog-card-minimalist-1:hover {
+			box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+		}
+	
+		.blog-card-minimalist-1:hover .card-img-top {
+			transform: scale(1.05);
+		}
+	
+		.blog-card-minimalist-3:hover {
+			border-color: rgba(0,123,255,0.2);
+			box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+		}
+	
+		/* Gambar dengan efek crop */
+		.blog-image-crop {
+			height: 220px;
+			object-fit: cover;
+			width: 100%;
+		}
+	
+		/* Animasi Entrance Versi Aman */
+		@keyframes safeEntranceAnimation {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	
+		.blog-section-animate .blog-card {
+			animation: safeEntranceAnimation 0.6s ease-out;
+		}
+	
+		/* Staggered Delay dengan Selector Spesifik */
+		.blog-section-animate .blog-card:nth-child(1) { 
+			animation-delay: 0.2s; 
+		}
+		.blog-section-animate .blog-card:nth-child(2) { 
+			animation-delay: 0.4s; 
+		}
+		.blog-section-animate .blog-card:nth-child(3) { 
+			animation-delay: 0.6s; 
+		}
+
+		/* CSS untuk animasi bottom-up */
+		.blog-section-animate .blog-card {
+			transition: all 0.6s ease-out;
+			opacity: 0;
+			transform: translateY(50px);
+		}
+	
+		.blog-section-animate .blog-card.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	
+		/* Tambahan hover effect */
+		.blog-section-animate .blog-card:hover {
+			transform: scale(1.025);
+			box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
+		}
+	</style>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -457,65 +537,65 @@
 		</div>
 	</section>
 
-	<section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="mb-3">Our Blog</h2>
-                <p class="text-muted">Documentation of our latest projects and insights</p>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-4 mb-4">
-					<div class="card h-100 shadow-sm">
-						<a href="single.html">
-							<img src="images/blog_images.png" alt="Robotics Project" class="card-img-top blog-image">
-						</a>
-						<div class="card-body">
-							<a href="single.html" class="text-decoration-none text-dark">
+	<section class="py-5 bg-light blog-section-animate" id="blog-section">
+		<div class="container">
+			<div class="text-center mb-5">
+				<h2 class="mb-3">Our Blog</h2>
+				<p class="text-muted">Documentation of our latest projects and insights</p>
+			</div>
+			
+			<div class="row">
+				<!-- Variasi 1: Soft Rounded -->
+				<div class="col-md-4 mb-4 blog-card-container">
+					<a href="single.html" class="text-decoration-none">
+						<div class="card h-100 blog-card blog-card-minimalist-1">
+							<img src="images/blog_images.png" alt="Robotics Project" class="card-img-top blog-image-crop">
+							<div class="card-body">
 								<h5 class="card-title">Robotics Revolution</h5>
 								<p class="card-text text-muted">Exploring how robotics will transform our future</p>
-							</a>
-							<div class="d-flex justify-content-between align-items-center">
-								<small class="text-muted">Posted on July 03, 2023</small>
-								<span class="badge bg-primary">Technology</span>
-							</div>
-							<div class="mt-3">
-								<a href="single.html"></a>
+								<div class="d-flex justify-content-between align-items-center mt-3">
+									<small class="text-muted">July 03, 2023</small>
+									<span class="badge bg-primary">Technology</span>
+								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 				</div>
-
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project2.jpg" alt="AI Development" class="card-img-top blog-image">
-                        <div class="card-body">
-                            <h5 class="card-title">AI Innovations</h5>
-                            <p class="card-text text-muted">Breakthrough in machine learning techniques</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Posted on June 15, 2023</small>
-                                <span class="badge bg-success">AI</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project3.jpg" alt="Cybersecurity" class="card-img-top blog-image">
-                        <div class="card-body">
-                            <h5 class="card-title">Cybersecurity Trends</h5>
-                            <p class="card-text text-muted">Protecting digital landscapes in 2023</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Posted on May 22, 2023</small>
-                                <span class="badge bg-warning">Security</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+			
+				<div class="col-md-4 mb-4 blog-card-container">
+					<a href="single.html" class="text-decoration-none">
+						<div class="card h-100 blog-card blog-card-minimalist-1">
+							<img src="images/blog_images.png" alt="Robotics Project" class="card-img-top blog-image-crop">
+							<div class="card-body">
+								<h5 class="card-title">Robotics Revolution</h5>
+								<p class="card-text text-muted">Exploring how robotics will transform our future</p>
+								<div class="d-flex justify-content-between align-items-center mt-3">
+									<small class="text-muted">July 03, 2023</small>
+									<span class="badge bg-primary">Technology</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			
+				<div class="col-md-4 mb-4 blog-card-container">
+					<a href="single.html" class="text-decoration-none">
+						<div class="card h-100 blog-card blog-card-minimalist-1">
+							<img src="images/blog_images.png" alt="Robotics Project" class="card-img-top blog-image-crop">
+							<div class="card-body">
+								<h5 class="card-title">Robotics Revolution</h5>
+								<p class="card-text text-muted">Exploring how robotics will transform our future</p>
+								<div class="d-flex justify-content-between align-items-center mt-3">
+									<small class="text-muted">July 03, 2023</small>
+									<span class="badge bg-primary">Technology</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
 		<div class="container">
@@ -995,5 +1075,45 @@
 		});
 	  </script>
 	  
+	  <script>
+		document.addEventListener('DOMContentLoaded', function() {
+			// Scroll Animation dari Bawah ke Atas
+			const blogCards = document.querySelectorAll('.blog-card');
+			
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry, index) => {
+					if (entry.isIntersecting) {
+						// Tambahkan delay untuk efek staggered
+						setTimeout(() => {
+							entry.target.classList.add('visible');
+						}, index * 200); // Setiap kartu muncul dengan delay berbeda
+					}
+				});
+			}, {
+				threshold: 0.1 // Trigger when 10% of the element is visible
+			});
+		
+			// Observe setiap blog card
+			blogCards.forEach(card => {
+				observer.observe(card);
+			});
+		
+			// Hover Effect Tambahan
+			blogCards.forEach(card => {
+				card.addEventListener('mouseenter', function() {
+					// Efek hover dengan sedikit scale
+					this.style.transform = 'scale(1.02)';
+					this.style.boxShadow = '0 12px 20px rgba(0,0,0,0.15)';
+				});
+		
+				card.addEventListener('mouseleave', function() {
+					// Kembalikan ke posisi semula
+					this.style.transform = 'scale(1)';
+					this.style.boxShadow = '0 8px 15px rgba(0,0,0,0.1)';
+				});
+			});
+		});
+		</script>
+
 	  </body>
 	  </html>
