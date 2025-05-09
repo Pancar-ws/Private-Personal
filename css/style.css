@@ -9804,3 +9804,230 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+/* Penambahan animasi pada bagian music travel dll */
+.my-interest {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.interest-wrap {
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.interest-wrap:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.interest-wrap .icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.interest-wrap:hover .icon {
+  transform: rotate(360deg);
+}
+
+.interest-wrap .text {
+  font-weight: 600;
+  color: #333;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.interest-wrap.active {
+  animation: pulse 1s infinite;
+  background-color: #e9f5ff;
+}
+/* Perbaikan pada bentuk foto about */
+.img-about {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.img-about .img {
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.img-about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+      135deg, 
+      rgba(0,0,0,0.05) 0%, 
+      rgba(0,0,0,0.1) 100%
+  );
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.img-about:hover::before {
+  opacity: 1;
+}
+
+.img-about:hover .img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .img-about {
+      margin-bottom: 30px;
+  }
+}
+/* Penambahan JS pada bagian contact */
+.dbox {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.dbox.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dbox .icon {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dbox:hover .icon {
+  transform: scale(1.1);
+  background-color: #f0f0f0;
+}
+
+.dbox .text span {
+  font-weight: bold;
+  color: #333;
+}
+
+.dbox .text a {
+  text-decoration: none;
+  color: #b3b3b3;
+  transition: color 0.3s ease;
+}
+
+.dbox .text a:hover {
+  color: #0056b3;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes ripple {
+  to {
+      transform: scale(4);
+      opacity: 0;
+  }
+}
+/* Desain Minimalis Variasi 1: Soft Rounded */
+.blog-card-minimalist-1 {
+border: none;
+border-radius: 12px;
+transition: all 0.3s ease;
+box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+overflow: hidden;
+}
+
+.blog-card-minimalist-1 .card-img-top {
+transition: transform 0.3s ease;
+}
+
+.blog-card-minimalist-1:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.blog-card-minimalist-1:hover .card-img-top {
+transform: scale(1.05);
+}
+
+.blog-card-minimalist-3:hover {
+border-color: rgba(0,123,255,0.2);
+box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+}
+
+/* Gambar dengan efek crop */
+.blog-image-crop {
+height: 220px;
+object-fit: cover;
+width: 100%;
+}
+
+/* Animasi Entrance Versi Aman */
+@keyframes safeEntranceAnimation {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+.blog-section-animate .blog-card {
+animation: safeEntranceAnimation 0.6s ease-out;
+}
+
+/* Staggered Delay dengan Selector Spesifik */
+.blog-section-animate .blog-card:nth-child(1) { 
+animation-delay: 0.2s; 
+}
+.blog-section-animate .blog-card:nth-child(2) { 
+animation-delay: 0.4s; 
+}
+.blog-section-animate .blog-card:nth-child(3) { 
+animation-delay: 0.6s; 
+}
+
+/* CSS untuk animasi bottom-up */
+.blog-section-animate .blog-card {
+transition: all 0.6s ease-out;
+opacity: 0;
+transform: translateY(50px);
+}
+
+.blog-section-animate .blog-card.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Tambahan hover effect */
+.blog-section-animate .blog-card:hover {
+transform: scale(1.025);
+box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
+}
+
+/* Penambahan css untuk bagian my skil*/
